@@ -1,0 +1,9 @@
+<div>
+  <h1 x-large class="sample-content">Angular 2 Reactive Forms</h1>
+  <hr>
+  <form [formGroup]="form">
+   Enter a value: <input type="text" formControlName="field1"/>
+  </form>
+  <div>Entered value: {{form.get('field1').value}}</div>
+  <hr>
+</div>
