@@ -1,0 +1,22 @@
+<style>
+  .obsImg {
+    max-height: 65%;
+    max-width: 65%;
+  }
+</style>
+<div>
+  <h1 x-large class="sample-content">Special Observables</h1>
+  <hr>
+  <div>Interval: {{intervalObs | async}}</div>
+  <div><img src="http://reactivex.io/documentation/operators/images/interval.c.png" class="obsImg" /></div>
+  <hr>
+  <div><input type="button" (click)="rangeClick()" value="Click Me"></div>
+  <div>Range current value: {{rangeObs | async}}</div>
+  <div><img src="http://reactivex.io/documentation/operators/images/range.c.png" class="obsImg" /></div>
+  <hr>
+  <div><input type="button" (click)="timerClick()" value="Click Me"></div>
+  <div>Timer value: {{timerObs | async}}</div>
+  <div><img src="http://reactivex.io/documentation/operators/images/timer.c.png" class="obsImg" /></div>
+  <hr>
+
+</div>

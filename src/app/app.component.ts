@@ -30,6 +30,10 @@ import {
         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
         Hand rolled observables
       </a>
+      <a [routerLink]=" ['./specials'] "
+        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        Special Observables
+      </a>
     </nav>
 
     <main>

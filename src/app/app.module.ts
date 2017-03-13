@@ -23,6 +23,7 @@ import { HomeComponent } from './home';
 import { Ng2FormComponent } from './ng2form';
 import { ObservablesComponent } from './observables'
 import { NoContentComponent } from './no-content';
+import { SpecialsComponent } from './specials'
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
@@ -43,7 +44,8 @@ type StoreType = {
     HomeComponent,
     NoContentComponent,
     Ng2FormComponent,
-    ObservablesComponent
+    ObservablesComponent,
+    SpecialsComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
