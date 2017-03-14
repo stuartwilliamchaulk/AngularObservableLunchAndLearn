@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  AfterViewInit
+  AfterViewInit,
+  ElementRef,
+  ViewChild
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -14,7 +16,7 @@ import 'rxjs/add/operator/do';
   templateUrl: './observables.component.html'
 })
 export class ObservablesComponent implements AfterViewInit {
-
+  @ViewChild('subjectButton') public subjectButton: ElementRef;
   public timedObservable: Observable<Date>;
   public currentDateTime: Date | string;
 
@@ -31,17 +33,36 @@ export class ObservablesComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
+
     let x = this.timedObservable.subscribe(
       (value) => { this.currentDateTime = value; },
       undefined,
       () => { this.currentDateTime = "Clock terminated"; }
     );
+
+    // Subject example.
+    
+    this.subjectObservable = Observable.fromEvent(this.subjectButton.nativeElement, 'click');
+    this.subjectObservable.subscribe(this.subject);
+    this.subject.subscribe((value) => {
+      this.subjectData.push(new Date().getMilliseconds());
+    })
+
   }
 
-  public subject: Subject<Date> = new Subject();
-  public subjectData: Array<Date> = new Array<Date>();
-  public subjectClick() {
-    this.subject.subscribe((value) => { this.subjectData.push(value); })
+  // Subject example
+  public subjectData: Array<number> = new Array<number>();
+  private subject: Subject<number> = new Subject();
+  private subjectObservable: Observable<any>;
+  private isHot:boolean = false;
+
+  doOnNext() {
+    this.subject.next(new Date().getMilliseconds());
   }
+
+  clearSubject() {
+    this.subjectData = new Array<number>();
+  }
+
 
 }

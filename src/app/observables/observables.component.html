@@ -1,6 +1,13 @@
 <div>
   <h1 x-large class="sample-content">Manual Observables</h1>
   <hr>
-  
   <div>Current Time: {{currentDateTime}}</div>
+  <hr>
+  <div>
+    <button #subjectButton>Subject From Subscription</button>
+    <input type="button" (click)="doOnNext()" value="Subject From OnNext"/>
+    <input type="button" (click)="clearSubject()" value="Clear"/>
+  </div>
+  <div *ngFor="let date of subjectData">{{date}}</div>
+  <hr>
 </div>
