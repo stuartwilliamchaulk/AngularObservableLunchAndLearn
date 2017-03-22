@@ -24,4 +24,39 @@ export class HomeComponent implements AfterViewInit {
       console.log(event);
     });
   }
+
+  public doCount: number = 0;
+  private doObs: Observable<any>;
+  public wireDo(): void {
+    this.doObs = this.button1Obs.map((event) => {
+        return this.doCount++;
+    })
+  }
+
+  public takeCount: number = 0;
+  private takeObs: Observable<number>;
+  public wireTake(): void {
+    this.takeObs = this.button1Obs.map((event) => {
+        return this.takeCount++;
+    }).take(5);
+  }
+
+  public reduceObs: Observable<number>;
+  public wireReduce(): void {
+    this.reduceObs = this.button1Obs
+    .map((event) => { return 1; })
+    .reduce((x,y)=>{
+      console.log("Reduce:" + (x+y));
+      return x+y;
+    });
+  }
+
+  public scanObs: Observable<number>;
+  public scanReduce(): void {
+    this.scanObs = this.button1Obs
+    .scan((x,y)=>{
+      if (Number.isInteger(x)) return x + 1;
+      return 0;
+    });
+  }
 }

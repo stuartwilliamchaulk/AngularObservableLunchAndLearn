@@ -1,6 +1,14 @@
 <div>
   <h1 x-large class="sample-content">Functional Reactive Programmer with Angular2 and RxJs</h1>
   <hr>
-  <button #button1>Button 1</button>
+  <button #button1>Click Me!</button>
+  <hr>
+  <button (click)="wireDo()">Do Button</button><div>Count: {{doObs | async}}</div>
+  <hr>
+  <button (click)="wireTake()">Take Button</button><div>Count: {{takeObs | async}}</div>
+  <hr>
+  <button (click)="wireReduce()">Reduce Button</button><div>Count: {{reduceObs | async}}</div>
+  <hr>
+  <button (click)="scanReduce()">Scan Button</button><div>Count: {{scanObs | async}}</div>
   <hr>
 </div>

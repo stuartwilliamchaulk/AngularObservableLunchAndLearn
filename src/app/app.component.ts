@@ -20,7 +20,7 @@ import {
     <nav>
       <a [routerLink]=" ['./'] "
         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Index
+        Overview
       </a>
       <a [routerLink]=" ['./ng2form'] "
         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">

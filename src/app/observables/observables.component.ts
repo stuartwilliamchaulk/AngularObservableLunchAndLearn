@@ -17,6 +17,7 @@ import 'rxjs/add/operator/do';
 })
 export class ObservablesComponent implements AfterViewInit {
   @ViewChild('subjectButton') public subjectButton: ElementRef;
+  @ViewChild('errorButton') public errorButton: ElementRef;
   public timedObservable: Observable<Date>;
   public currentDateTime: Date | string;
 
@@ -28,7 +29,7 @@ export class ObservablesComponent implements AfterViewInit {
       var stopper = setTimeout(() => {
         observer.complete();
         clearInterval(interval);
-      }, 10000);
+      }, 1000000);
     })
   }
 
@@ -46,7 +47,13 @@ export class ObservablesComponent implements AfterViewInit {
     this.subjectObservable.subscribe(this.subject);
     this.subject.subscribe((value) => {
       this.subjectData.push(new Date().getMilliseconds());
-    })
+    });
+
+    this.errorSubject.subscribe(
+      (val) => { this.errorString = val},
+      (error) => { this.errorString = "Problem: " + error},
+      () => { this.errorString = "Terminated"}
+    );
 
   }
 
@@ -64,5 +71,19 @@ export class ObservablesComponent implements AfterViewInit {
     this.subjectData = new Array<number>();
   }
 
+  // error example
+  private errorCount: number = 0;
+  private errorSubject: Subject<string> = new Subject();
+  public errorString: string;
+  private errorClick(): void{
+    this.errorCount++;
+    if (this.errorCount === 3) { this.errorSubject.error("Nope"); }
+    else 
+    if(this.errorCount == 5){ this.errorSubject.complete();}
+    else{
+      this.errorSubject.next(this.errorCount.toString());
+    }
+
+  }
 
 }
